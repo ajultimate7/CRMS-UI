@@ -1,0 +1,44 @@
+<p>add-employee works!</p>
+
+<div>
+    <h1>{{message}}</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <fieldset>
+                    <legend class="text-center">Valid information is required to register. <span class="req"><small>
+                                required *</small></span></legend>
+
+                    <div class="form-group">
+                        <label for="First Name"><span class="req">* </span> First Name: <small>This will be your first name
+                                as per aadhar card</small> </label>
+                        <input required type="text" [(ngModel)]="employee.firstName" name="First Name" id="First Name"
+                            class="form-control phone" maxlength="12" placeholder="Enter your first name..." />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Last Name"><span class="req">* </span> Last Name: <small>This will be your last name
+                                as per aadhar card</small> </label>
+                        <input required type="text" [(ngModel)]="employee.lastName" name="Last Name" id="Last Name"
+                            class="form-control phone" maxlength="12" placeholder="Enter your last name..." />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Contact No"><span class="req">* </span> Contact No: <small>This will be your working
+                             mobile number</small> </label>
+                        <input required type="text" [(ngModel)]="employee.contactNo" name="Contact No" id="First Name"
+                            class="form-control phone" maxlength="12" placeholder="Enter your contact no..." />
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit" name="submit_reg" value="Register" (click)="addEmployee()">
+                    </div>
+                </fieldset>
+            </form><!-- ends register form -->
+            <!-- second for to fiter user-->
+        </div><!-- ends col-6 -->
+
+    </div>
+</div>

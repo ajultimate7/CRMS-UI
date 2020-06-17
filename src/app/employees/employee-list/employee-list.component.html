@@ -1,0 +1,32 @@
+<div class="row">
+    <hr>
+    <div class="row">
+        <div class="col-xs-12">
+            <table border="2" width = "1200" cellpadding="10" cellspacing="10" >
+                <tr>
+                    <th style="text-align: center">{{'ID'}}</th>
+                    <th style="text-align: center">{{'Fisrt Name'}}</th>
+                    <th style="text-align: center">{{'Last Name'}}</th>
+                    <th style="text-align: center">{{'Contact No'}}</th>
+                    <th style="text-align: center">{{'Username'}}</th>
+                    <th style="text-align: center">{{'Email Id'}}</th>
+                    <th style="text-align: center">{{'Action'}}</th>
+                </tr>
+                <tr *ngFor="let employee of employees">
+                    <td style="text-align: center">{{employee.id}}</td>
+                    <td style="text-align: center">{{employee.firstName}}</td>
+                    <td style="text-align: center">{{employee.lastName}}</td>
+                    <td style="text-align: center">{{employee.contactNo}}</td>
+                    <td style="text-align: center">{{employee.username}}</td>
+                    <td style="text-align: center">{{employee.emailId}}</td>
+                    <td style="text-align: center">
+                        <button type="button" class="btn btn-success"><i class="fa fa-pencil">Edit</i></button>
+                        <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-pencil">Delete</i></button>
+                    </td>
+                </tr>
+            </table>
+            <!-- <app-employee-item></app-employee-item> -->
+        </div>
+    </div>
+</div>
+
