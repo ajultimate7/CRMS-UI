@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeInDTO } from '../../employeeInDTO.model';
-import { AddEmployeeService } from 'src/app/add-employee.service';
-import { EmployeeDTO } from '../../employeeDTO.model';
+import { EmployeeService } from 'src/app/employee.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-employee',
@@ -10,18 +10,35 @@ import { EmployeeDTO } from '../../employeeDTO.model';
 })
 export class AddEmployeeComponent implements OnInit {
 
-  employee: EmployeeInDTO = new EmployeeInDTO("","",0);
-  message: any;
+  employees: EmployeeInDTO = new EmployeeInDTO();
+  submitted = false;
+  message:any;
 
-  constructor(private service: AddEmployeeService) { }
+  constructor(
+    private service: EmployeeService,
+    private route:ActivatedRoute,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
+    // this.addEmployee();
   }
 
   public addEmployee(){
-    console.log(this.employee);
-    let response = this.service.addEmployee(this.employee);
+    console.log(this.employees);
+    let response = this.service.addEmployee(this.employees);
     response.subscribe((data)=>this.message=data)
+    this.employees = new EmployeeInDTO();
+    this.goToList();
+  }
+
+  onSubmit(){
+    this.submitted=true;
+    this.addEmployee();
+  }
+
+  goToList(){
+    this.router.navigate(['/employees']);
   }
 
 }

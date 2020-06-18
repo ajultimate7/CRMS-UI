@@ -1,0 +1,21 @@
+<h2>Update Employee with Employee Id:{{employee.id}}</h2>
+<div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="First Name">First Name</label>
+            <input type="text" class="form-group" required [(ngModel)]="employee.firstName" name="First Name" placeholder="Enter First Name">
+        </div>
+
+        <div class="form-group">
+            <label for="Last Name">Last Name</label>
+            <input type="text" class="form-group" required [(ngModel)]="employee.lastName" name="Last Name" placeholder="Enter Last Name">
+        </div>
+
+        <div class="form-group">
+            <label for="Contact No">Contact No</label>
+            <input type="number" class="form-group" required [(ngModel)]="employee.contactNo" name="Contact No" placeholder="Enter Contact Number">
+        </div>
+
+        <button class="btn btn-success">Submit</button>
+    </form>
+</div>

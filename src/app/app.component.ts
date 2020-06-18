@@ -6,12 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'CRMS-UI';
+  title = 'Claim Request Management System';
 
   showAddEmployeeForm = false;
 
   showEmployees = false;
-
-  
 
 }

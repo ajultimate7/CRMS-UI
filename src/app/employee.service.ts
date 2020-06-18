@@ -1,0 +1,41 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { EmployeeInDTO } from './employees/employeeInDTO.model';
+import { Observable } from 'rxjs';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EmployeeService {
+
+  constructor(private http: HttpClient) {}
+
+  private baseURL = 'http://localhost:8080/api/employee/';
+
+  public addEmployee(employee: EmployeeInDTO){
+    return this.http.post('http://localhost:8080/api/employee/',employee);
+  }
+
+  public getAllEmployees(): Observable<any>{
+    return this.http.get('http://localhost:8080/api/employee/all');
+  }
+
+  public updateEmployee(id:number, employee: any){
+    return this.http.put(`http://localhost:8080/api/employee/${id}`,employee);
+  }
+
+  // public deactivateEmployee(id:number){
+  //   return this.http.delete(`http://localhost:8080/api/employee/${id}`);
+  // }
+
+  // public getEmployee(id:number): Observable<any>{
+  //   return this.http.get('http://localhost:8080/api/employee/',id);
+  // }
+
+
+  public getEmployeeById(id:number): Observable<any>{
+    return this.http.get(`http://localhost:8080/api/employee/id/${id}`);
+  }
+
+}

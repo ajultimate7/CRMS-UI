@@ -3,9 +3,11 @@ export class EmployeeInDTO{
     lastName: String;
     contactNo: number;
 
-    constructor(firstName: String, lastName:String, contactNo:number){
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.contactNo=contactNo;
-    }
+    // constructor(firstName: String, lastName:String, contactNo:number){
+    //     this.firstName=firstName;
+    //     this.lastName=lastName;
+    //     this.contactNo=contactNo;
+    // }
+
+
 }

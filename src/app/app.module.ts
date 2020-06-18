@@ -3,25 +3,21 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
-import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
-import { EmployeeComponent } from './employees/employee-list/employee/employee.component';
 import { HeaderComponent } from './header/header.component';
-import {AddEmployeeService} from './add-employee.service';
+import {EmployeeService} from './employee.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee/add-employee.component';
+import { UpdateEmployeeComponent } from './employees/update-employee/update-employee/update-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    EmployeesComponent,
     EmployeeListComponent,
-    EmployeeDetailComponent,
-    EmployeeComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    UpdateEmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +25,7 @@ import { AddEmployeeComponent } from './employees/add-employee/add-employee/add-
     HttpClientModule,
     FormsModule
   ],
-  providers: [AddEmployeeService],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
