@@ -5,6 +5,7 @@ export class EmployeeDTO{
     contactNo: number;
     emailId: String;
     username: String;
+    status: String;
 
     // constructor(firstName: String,lastName:String,id:number,contactNo:number,emailId:String,username:String){
     //     this.firstName=firstName;

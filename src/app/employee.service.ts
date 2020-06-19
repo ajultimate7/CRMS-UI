@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EmployeeInDTO } from './employees/employeeInDTO.model';
 import { Observable } from 'rxjs';
+import {HttpParams} from '@angular/common/http';
+import { EmployeeDTO } from './employees/employeeDTO.model';
 
 
 @Injectable({
@@ -21,18 +23,13 @@ export class EmployeeService {
     return this.http.get('http://localhost:8080/api/employee/all');
   }
 
-  public updateEmployee(id:number, employee: any){
+  public updateEmployee(id:number, employee: EmployeeInDTO){
     return this.http.put(`http://localhost:8080/api/employee/${id}`,employee);
   }
 
-  // public deactivateEmployee(id:number){
-  //   return this.http.delete(`http://localhost:8080/api/employee/${id}`);
-  // }
-
-  // public getEmployee(id:number): Observable<any>{
-  //   return this.http.get('http://localhost:8080/api/employee/',id);
-  // }
-
+  public deactivateEmployee(id:number){
+    return this.http.patch('http://localhost:8080/api/employee/',id);
+  }
 
   public getEmployeeById(id:number): Observable<any>{
     return this.http.get(`http://localhost:8080/api/employee/id/${id}`);

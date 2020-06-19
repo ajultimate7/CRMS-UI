@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { EmployeeDTO } from '../employeeDTO.model';
 import { EmployeeService } from 'src/app/employee.service';
 import { Router } from '@angular/router';
@@ -13,11 +13,13 @@ export class EmployeeListComponent implements OnInit {
   tableHeaders = ['ID','First Name','Last Name','Contact No','Username','Email Id'];
 
   employees: EmployeeDTO[];
+
+  employeesListlength: number;
   
   constructor(
     private service: EmployeeService,
     private router: Router
-  ) { }
+    ){}
 
   ngOnInit(){
     this.refreshData();
@@ -35,15 +37,9 @@ export class EmployeeListComponent implements OnInit {
   }
 
   deactivateEmployee(id:number){
-    // this.service.deactivateEmployee(id);
+    let response = this.service.deactivateEmployee(id);
+    response.subscribe((data)=>console.log(data));
     this.refreshData();
   }
-
-
-  // public getAllEmployees(){
-  //   this.router.navigate(['/showEmployees']);
-  //   let response = this.service.getAllEmployees();
-  //   response.subscribe((data)=>this.employees=data);
-  // }
 
 }

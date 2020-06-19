@@ -7,8 +7,7 @@ import { EmployeeListComponent } from './employees/employee-list/employee-list.c
 import { HeaderComponent } from './header/header.component';
 import {EmployeeService} from './employee.service';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import { AddEmployeeComponent } from './employees/add-employee/add-employee/add-employee.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UpdateEmployeeComponent } from './employees/update-employee/update-employee/update-employee.component';
 
 @NgModule({
@@ -16,14 +15,14 @@ import { UpdateEmployeeComponent } from './employees/update-employee/update-empl
     AppComponent,
     HeaderComponent,
     EmployeeListComponent,
-    AddEmployeeComponent,
     UpdateEmployeeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]
