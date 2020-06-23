@@ -1,4 +1,5 @@
-<h2>Enter Employee Details</h2>
+<h2 *ngIf="showAddEmployee">Add Employee</h2>
+<h2 *ngIf="!showAddEmployee">Update Employee</h2>
 
 <div>
     <form *ngIf="employeeFormGroup" [formGroup]="employeeFormGroup" (ngSubmit)="onSubmit()">
@@ -54,6 +55,6 @@
         </label>
         <hr>
         <button type="button" class="btn btn-success" [disabled]="!employeeFormGroup.valid">Submit</button>
-
+        <app-employee-detail *ngIf="!showAddEmployee" [emailId]="employeeDTO.emailId" [status]="employeeDTO.status"></app-employee-detail>
     </form>
 </div>

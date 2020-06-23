@@ -19,6 +19,7 @@ export class UpdateEmployeeComponent implements OnInit {
   message: any;
   employeeFormGroup: FormGroup;
 
+  showAddEmployee = false;
 
   createFormGroup(){
     this.employeeFormGroup = new FormGroup({
@@ -51,9 +52,11 @@ export class UpdateEmployeeComponent implements OnInit {
       response.subscribe((data)=>{
       this.employeeInDTO=data;
       this.createFormGroup();
+      this.employeeDTO=data;
     });
     }
     else{
+      this.showAddEmployee=true;
       this.employeeInDTO = new EmployeeInDTO();
       this.createFormGroup();
     }
@@ -63,7 +66,6 @@ export class UpdateEmployeeComponent implements OnInit {
     let response = this.service.updateEmployee(this.id,this.employeeInDTO);
     response.subscribe((data)=>console.log(data));
     this.employeeDTO = new EmployeeDTO();
-    this.goToEmployeeList();
   }
 
   addEmployee(){

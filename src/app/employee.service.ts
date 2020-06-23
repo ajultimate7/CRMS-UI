@@ -28,6 +28,7 @@ export class EmployeeService {
   }
 
   public deactivateEmployee(id:number){
+    console.log(id);
     return this.http.patch('http://localhost:8080/api/employee/',id);
   }
 

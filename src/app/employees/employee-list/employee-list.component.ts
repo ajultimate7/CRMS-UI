@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { EmployeeDTO } from '../employeeDTO.model';
 import { EmployeeService } from 'src/app/employee.service';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalComponent } from 'src/app/modal/modal.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -17,6 +19,7 @@ export class EmployeeListComponent implements OnInit {
   employeesListlength: number;
   
   constructor(
+    private matDialog: MatDialog,
     private service: EmployeeService,
     private router: Router
     ){}
@@ -36,10 +39,16 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['update',id]);
   }
 
-  deactivateEmployee(id:number){
-    let response = this.service.deactivateEmployee(id);
-    response.subscribe((data)=>console.log(data));
-    this.refreshData();
+  openModal(id: number){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "200px";
+    dialogConfig.width = "300px";
+    dialogConfig.data = {
+      id: id
+    }
+    const modalDialog = this.matDialog.open(ModalComponent,dialogConfig);
   }
 
 }

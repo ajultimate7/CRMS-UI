@@ -2,9 +2,8 @@
     <hr>
     <div class="row">
         <div class="col-xs-12" align="center">
-            <table class="table table-stripped" cellpadding="10" cellspacing="10" border="5" align="center">
+            <table class="table table-stripped" cellpadding="10" cellspacing="10" border="5" style="align-self: center;">
                 <tr>
-                    <!-- <th style="text-align: center">{{header}}</th> -->
                     <th style="text-align: center">{{'ID'}}</th>
                     <th style="text-align: center">{{'First Name'}}</th>
                     <th style="text-align: center">{{'Last Name'}}</th>
@@ -22,11 +21,10 @@
                     <td style="text-align: center">{{employee.emailId}}</td>
                     <td style="text-align: center">
                         <button type="button" class="btn btn-info" (click)="updateEmployee(employee.id)">Edit</button>
-                        <button type="button" class="btn btn-danger" style="margin-left: 10px" (click)="deactivateEmployee(employee.id)">Deactivate</button>
+                        <button type="button" class="btn btn-danger" style="margin-left: 10px" (click)="openModal(employee.id)">Deactivate</button>
                     </td>
                 </tr>
             </table>
-            <!-- <app-employee-item></app-employee-item> -->
         </div>
     </div>
 </div>
