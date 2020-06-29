@@ -9,6 +9,13 @@ import { EmployeeService } from '../employee.service';
 })
 export class ModalComponent implements OnInit {
 
+  searchParams: any={
+    firstName:'',
+    lastName:'',
+    status:'',
+    id:0
+  };
+
   constructor(
     private dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) private modalData:any,
@@ -16,10 +23,13 @@ export class ModalComponent implements OnInit {
     ){ }
 
   ngOnInit(): void {
+    console.log("Inside modal");
   }
 
   deactivateEmployee(){
-    this.employeeService.deactivateEmployee(this.modalData.id).subscribe((data)=>this.employeeService.getAllEmployees());
+    this.searchParams.status = 'Active';
+    this.employeeService.deactivateEmployee(this.modalData.id).subscribe((data)=>this.employeeService.getAllEmployees(this.searchParams));
+    this.employeeService.deactivateEmployee(this.modalData.id).subscribe((data)=>this.employeeService.getAllActiveEmployees());
     this.closeModal();
   }
 

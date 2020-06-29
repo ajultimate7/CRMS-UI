@@ -4,6 +4,7 @@ import { EmployeeService } from 'src/app/employee.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/modal/modal.component';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-employee-list',
@@ -12,11 +13,18 @@ import { ModalComponent } from 'src/app/modal/modal.component';
 })
 export class EmployeeListComponent implements OnInit {
 
-  tableHeaders = ['ID','First Name','Last Name','Contact No','Username','Email Id'];
+  tableHeaders:String[] = ['ID','First Name','Last Name','Contact No','Username','Email Id','Action'];
 
   employees: EmployeeDTO[];
 
   employeesListlength: number;
+
+  public searchParams: any={
+    firstName:null,
+    lastName:null,
+    status:null,
+    id:null
+  };
   
   constructor(
     private matDialog: MatDialog,
@@ -29,9 +37,14 @@ export class EmployeeListComponent implements OnInit {
   }
 
   refreshData(){
-    let response = this.service.getAllEmployees();
+    console.log("refresh data called");
+    // this.searchParams.status='Active';
+    // this.searchParams.id='15';
+    this.searchParams.firstName='ninja';
+    // this.searchParams.status='Active';
+    let response = this.service.getAllEmployees(this.searchParams);
+    // let response = this.service.getAllActiveEmployees();
     response.subscribe((data)=>this.employees=data);
-    console.log(this.employees);
   }
 
   updateEmployee(id:number){
@@ -49,6 +62,7 @@ export class EmployeeListComponent implements OnInit {
       id: id
     }
     const modalDialog = this.matDialog.open(ModalComponent,dialogConfig);
+    modalDialog.afterClosed().subscribe(result => this.refreshData());
   }
 
 }

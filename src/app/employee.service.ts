@@ -13,17 +13,21 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {}
 
-  private baseURL = 'http://localhost:8080/api/employee/';
+  baseUrl='http://localhost:8080/api/employee/';
 
   public addEmployee(employee: EmployeeInDTO){
     return this.http.post('http://localhost:8080/api/employee/',employee);
   }
 
-  public getAllEmployees(): Observable<any>{
-    return this.http.get('http://localhost:8080/api/employee/all');
+  public getAllEmployees(searchParams:any): Observable<any>{
+    return this.http.get('http://localhost:8080/api/employee/',searchParams);
   }
 
-  public updateEmployee(id:number, employee: EmployeeInDTO){
+  public getAllActiveEmployees(): Observable<any>{
+    return this.http.get(`${this.baseUrl}all`);
+  }
+
+  public updateEmployee(id:number, employee: EmployeeInDTO): Observable<any>{
     return this.http.put(`http://localhost:8080/api/employee/${id}`,employee);
   }
 

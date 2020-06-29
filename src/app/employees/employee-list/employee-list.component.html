@@ -1,31 +1,27 @@
-<div class="row">
-    <hr>
+<table class="table table-hover">
     <div class="row">
-        <div class="col-xs-12" align="center">
-            <table class="table table-stripped" cellpadding="10" cellspacing="10" border="5" style="align-self: center;">
-                <tr>
-                    <th style="text-align: center">{{'ID'}}</th>
-                    <th style="text-align: center">{{'First Name'}}</th>
-                    <th style="text-align: center">{{'Last Name'}}</th>
-                    <th style="text-align: center">{{'Contact No'}}</th>
-                    <th style="text-align: center">{{'Username'}}</th>
-                    <th style="text-align: center">{{'Email Id'}}</th>
-                    <th style="text-align: center">{{'Action'}}</th>
-                </tr>           
-                <tr *ngFor="let employee of employees">
-                    <td style="text-align: center">{{employee.id}}</td>
-                    <td style="text-align: center">{{employee.firstName}}</td>
-                    <td style="text-align: center">{{employee.lastName}}</td>
-                    <td style="text-align: center">{{employee.contactNo}}</td>
-                    <td style="text-align: center">{{employee.username}}</td>
-                    <td style="text-align: center">{{employee.emailId}}</td>
-                    <td style="text-align: center">
-                        <button type="button" class="btn btn-info" (click)="updateEmployee(employee.id)">Edit</button>
-                        <button type="button" class="btn btn-danger" style="margin-left: 10px" (click)="openModal(employee.id)">Deactivate</button>
-                    </td>
-                </tr>
-            </table>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <table cellpadding="10" cellspacing="10" border="5">
+                    <tr>
+                        <th *ngFor="let header of tableHeaders" style="text-align: center; background-color: darkgrey;">{{header}}</th>
+                    </tr>           
+                    <tr *ngFor="let employee of employees">
+                        <td style="text-align: center">{{employee.id}}</td>
+                        <td style="text-align: center">{{employee.firstName}}</td>
+                        <td style="text-align: center">{{employee.lastName}}</td>
+                        <td style="text-align: center">{{employee.contactNo}}</td>
+                        <td style="text-align: center">{{employee.username}}</td>
+                        <td style="text-align: center">{{employee.emailId}}</td>
+                        <td style="text-align: center">
+                            <button type="button" class="btn btn-info" (click)="updateEmployee(employee.id)">Edit</button>
+                            <button type="button" class="btn btn-danger" style="margin-left: 10px" (click)="openModal(employee.id)">Deactivate</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</table>
 

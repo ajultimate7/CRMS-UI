@@ -9,6 +9,8 @@ export class EmployeeDetailComponent implements OnInit {
 
   @Input() emailId: String;
   @Input() status: String;
+  @Input() show:boolean;
+  
 
   constructor() { }
 

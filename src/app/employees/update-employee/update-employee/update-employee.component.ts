@@ -15,16 +15,17 @@ export class UpdateEmployeeComponent implements OnInit {
   employeeInDTO: EmployeeInDTO;
   employeeDTO: EmployeeDTO;
   id: number;
-  submitted = false;
   message: any;
   employeeFormGroup: FormGroup;
+
+  disableButton = false;
 
   showAddEmployee = false;
 
   createFormGroup(){
     this.employeeFormGroup = new FormGroup({
-      firstName: new FormControl(this.employeeInDTO.firstName,[Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
-      lastName: new FormControl(this.employeeInDTO.lastName, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
+      firstName: new FormControl(this.employeeInDTO.firstName,[Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern("[A-Za-z]*")]),
+      lastName: new FormControl(this.employeeInDTO.lastName, [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern("[A-Za-z]*")]),
       contactNo: new FormControl(this.employeeInDTO.contactNo, [Validators.required, Validators.min(1000000000), Validators.max(9999999999), Validators.pattern("^[1-9][0-9]*")]),
       username: new FormControl(this.employeeDTO.username),
       emailId: new FormControl(this.employeeDTO.emailId),
@@ -44,6 +45,7 @@ export class UpdateEmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit(){
+    console.log("calling ngOnInit");
     this.employeeDTO = new EmployeeDTO();
     this.id = this.route.snapshot.params['id'];
     console.log(this.id);
@@ -63,20 +65,28 @@ export class UpdateEmployeeComponent implements OnInit {
   }
 
   updateEmployee(){
+    this.employeeInDTO.firstName = this.employeeFormGroup.get('firstName').value;
+    this.employeeInDTO.lastName = this.employeeFormGroup.get('lastName').value;
+    this.employeeInDTO.contactNo = this.employeeFormGroup.get('contactNo').value;
     let response = this.service.updateEmployee(this.id,this.employeeInDTO);
-    response.subscribe((data)=>console.log(data));
+    response.subscribe((data)=>this.employeeDTO=data);
     this.employeeDTO = new EmployeeDTO();
+    this.router.navigate(['update',this.id]);
   }
 
   addEmployee(){
+    this.employeeInDTO.firstName = this.employeeFormGroup.get('firstName').value;
+    this.employeeInDTO.lastName = this.employeeFormGroup.get('lastName').value;
+    this.employeeInDTO.contactNo = this.employeeFormGroup.get('contactNo').value;
     let response = this.service.addEmployee(this.employeeInDTO);
     response.subscribe((data)=>this.message=data)
     this.employeeDTO = new EmployeeDTO();
-    this.goToEmployeeList();
+    // this.goToEmployeeList();
+    
   }
 
   onSubmit(){
-    this.submitted=true;
+    this.disableButton = true;
     if(this.id != -1)
       this.updateEmployee();
     else 
